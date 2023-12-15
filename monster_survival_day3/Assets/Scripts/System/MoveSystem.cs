@@ -28,7 +28,6 @@ public class MoveSystem
 
             if (moveComponent.IsChaseTarget)
             {
-                // moveComponent.Direction = (moveComponent.TargetPosition - moveComponent.ObjectTransform.position).normalized;
                 moveComponent.Direction = Vector3.forward;
             }
 

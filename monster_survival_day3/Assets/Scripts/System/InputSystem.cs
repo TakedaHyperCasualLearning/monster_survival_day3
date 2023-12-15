@@ -36,10 +36,16 @@ public class PlayerInputSystem
             Vector3 rotationDirection = Input.mousePosition - playerPoint;
             rotationDirection = rotationDirection.normalized;
             rotationDirection.z = 0.0f;
-            // Debug.Log(rotationDirection);
             moveComponent.TargetPosition = Camera.main.ScreenToWorldPoint(playerPoint + rotationDirection);
 
-            Debug.Log(moveComponent.TargetPosition);
+            if (Input.GetMouseButton(0))
+            {
+                inputComponent.IsKeyDown = true;
+            }
+            else
+            {
+                inputComponent.IsKeyDown = false;
+            }
         }
 
     }

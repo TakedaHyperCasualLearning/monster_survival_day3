@@ -13,9 +13,12 @@ public class Main : MonoBehaviour
 
     private MoveSystem moveSystem = null;
     private PlayerInputSystem inputSystem = null;
+    private PlayerShotSystem shotSystem = null;
 
     private EnemyChaseSystem enemyChaseSystem = null;
     private EnemySpawnSystem enemySpawnSystem = null;
+
+    private BulletShotSystem bulletShotSystem = null;
 
     void Start()
     {
@@ -24,9 +27,12 @@ public class Main : MonoBehaviour
         GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         moveSystem = new MoveSystem(gameEvent);
         inputSystem = new PlayerInputSystem(gameEvent);
+        shotSystem = new PlayerShotSystem(gameEvent, objectPool, player.transform);
 
         enemyChaseSystem = new EnemyChaseSystem(gameEvent, player);
         enemySpawnSystem = new EnemySpawnSystem(gameEvent, objectPool, player.transform);
+
+        bulletShotSystem = new BulletShotSystem(gameEvent, player.transform);
 
         gameEvent.AddComponentList?.Invoke(player);
         gameEvent.AddComponentList?.Invoke(enemySpawner);
@@ -37,6 +43,9 @@ public class Main : MonoBehaviour
         enemyChaseSystem.OnUpdate();
         inputSystem.OnUpdate();
         moveSystem.OnUpdate();
+
+        shotSystem.OnUpdate();
+        bulletShotSystem.OnUpdate();
 
         enemySpawnSystem.OnUpdate();
     }
