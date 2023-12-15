@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8633695954542263255}
   - component: {fileID: 8633695954542263252}
   - component: {fileID: 8633695954542263209}
+  - component: {fileID: 3785573722380470609}
+  - component: {fileID: 1183082833813186670}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -97,6 +99,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectTransform: {fileID: 8633695954542263254}
-  speed: 3
+  speed: 1
   isLookAtTarget: 1
   isChaseTarget: 1
+--- !u!114 &3785573722380470609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633695954542263250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0800568d90c0743fda19038daf3e3f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamageInterval: 0
+  damageInterval: 0
+--- !u!114 &1183082833813186670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8633695954542263250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff5dbf9a6e84141e8937ed78938fb938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoint: 5
+  hitPointMax: 5
+  attackPoint: 5

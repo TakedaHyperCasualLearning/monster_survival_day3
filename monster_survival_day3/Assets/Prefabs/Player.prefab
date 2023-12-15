@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 79825224337712620}
   - component: {fileID: 79825224337712621}
   - component: {fileID: 2495651884462140216}
+  - component: {fileID: -3255520732732679521}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -99,6 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5dbf9a6e84141e8937ed78938fb938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPoint: 100
+  hitPointMax: 100
+  attackPoint: 1
 --- !u!114 &79825224337712620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,3 +145,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 1448611148095406336, guid: 8dd8f972167654948add4fa907fec897, type: 3}
   shotInterval: 0.5
+--- !u!114 &-3255520732732679521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79825224337712622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0800568d90c0743fda19038daf3e3f8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDamageInterval: 1
+  damageInterval: 0.5
