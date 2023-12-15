@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private GameObject playerPrefab = null;
+    private GameEvent gameEvent = new GameEvent();
+
+    private MoveSystem moveSystem = null;
+    private PlayerInputSystem inputSystem = null;
+
     void Start()
     {
+        GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+        moveSystem = new MoveSystem(gameEvent);
+        inputSystem = new PlayerInputSystem(gameEvent);
 
+        gameEvent.AddComponentList(player);
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        moveSystem.OnUpdate();
+        inputSystem.OnUpdate();
     }
 }
