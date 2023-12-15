@@ -25,6 +25,7 @@ public class PlayerShotSystem
         for (int i = 0; i < playerShotComponentList.Count; i++)
         {
             PlayerShotComponent playerShotComponent = playerShotComponentList[i];
+            if (playerShotComponent.gameObject.activeSelf == false) continue;
 
             playerShotComponent.ShotTimer += Time.deltaTime;
 
@@ -34,9 +35,13 @@ public class PlayerShotSystem
             playerShotComponent.ShotTimer = 0.0f;
 
             GameObject shot = objectPool.GenerateObject(playerShotComponent.ShotPrefab);
+            int shotCount = objectPool.GetObjectList(playerShotComponent.ShotPrefab).Count;
+            if (objectPool.IsNewGenerate)
+            {
+                gameEvent.AddComponentList?.Invoke(shot);
+                objectPool.IsNewGenerate = false;
+            }
             shot.transform.position = playerTransform.position;
-
-            gameEvent.AddComponentList?.Invoke(shot);
         }
     }
 

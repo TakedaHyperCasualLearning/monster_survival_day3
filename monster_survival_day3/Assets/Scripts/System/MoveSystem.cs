@@ -20,6 +20,7 @@ public class MoveSystem
         for (int i = 0; i < moveComponentList.Count; i++)
         {
             MoveComponent moveComponent = moveComponentList[i];
+            if (moveComponent.gameObject.activeSelf == false) continue;
 
             if (moveComponent.IsLookAtTarget)
             {
@@ -31,7 +32,7 @@ public class MoveSystem
                 moveComponent.Direction = Vector3.forward;
             }
 
-            moveComponent.ObjectTransform.Translate(moveComponent.Direction * moveComponent.Speed * Time.deltaTime, Space.Self);
+            moveComponent.gameObject.transform.Translate(moveComponent.Direction.normalized * moveComponent.Speed * Time.deltaTime, Space.Self);
         }
     }
 

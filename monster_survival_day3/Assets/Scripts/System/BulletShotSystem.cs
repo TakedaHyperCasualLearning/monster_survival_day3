@@ -24,6 +24,8 @@ public class BulletShotSystem
         for (int i = 0; i < moveComponentList.Count; i++)
         {
             MoveComponent moveComponent = moveComponentList[i];
+            if (moveComponent.gameObject.activeSelf == false) continue;
+
             BulletShotComponent bulletShotComponent = bulletShotComponentList[i];
 
             if (!bulletShotComponent.IsFirst)
@@ -32,7 +34,7 @@ public class BulletShotSystem
                 bulletShotComponent.Direction = playerTransform.forward;
             }
 
-            moveComponent.Direction = bulletShotComponent.Direction;
+            moveComponent.Direction = bulletShotComponent.Direction.normalized;
         }
     }
 

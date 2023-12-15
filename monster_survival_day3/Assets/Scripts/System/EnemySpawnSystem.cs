@@ -34,13 +34,17 @@ public class EnemySpawnSystem : MonoBehaviour
                 enemySpawnComponent.SpawnTimer = 0.0f;
 
                 GameObject enemy = objectPool.GenerateObject(enemySpawnComponent.EnemyPrefab);
+                int enemyCount = objectPool.GetObjectList(enemySpawnComponent.EnemyPrefab).Count;
+                if (objectPool.IsNewGenerate)
+                {
+                    gameEvent.AddComponentList?.Invoke(enemy);
+                    objectPool.IsNewGenerate = false;
+                }
 
                 Vector3 screenPos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 10.0f));
                 Vector3 randomPos = new Vector3(Random.Range(screenPos.x, screenPos.x + enemySpawnComponent.SpawnPositionOffset.x), 0.0f, Random.Range(screenPos.z, screenPos.z + enemySpawnComponent.SpawnPositionOffset.z));
                 randomPos *= Random.Range(0, 2) == 0 ? -1 : 1;
                 enemy.transform.position = playerTransform.position + randomPos;
-
-                gameEvent.AddComponentList?.Invoke(enemy);
             }
         }
     }
