@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveSystem
+public class EnemyChaseSystem
 {
-    private GameEvent gameEvent = null;
     private List<MoveComponent> moveComponentList = new List<MoveComponent>();
 
-    public MoveSystem(GameEvent gameEvent)
+    GameObject target = null;
+
+    public EnemyChaseSystem(GameEvent gameEvent, GameObject player)
     {
-        this.gameEvent = gameEvent;
+        target = player;
 
         gameEvent.AddComponentList += AddComponentList;
         gameEvent.RemoveComponentList += RemoveComponentList;
@@ -21,18 +22,7 @@ public class MoveSystem
         {
             MoveComponent moveComponent = moveComponentList[i];
 
-            if (moveComponent.IsLookAtTarget)
-            {
-                moveComponent.ObjectTransform.LookAt(moveComponent.TargetPosition);
-            }
-
-            if (moveComponent.IsChaseTarget)
-            {
-                // moveComponent.Direction = (moveComponent.TargetPosition - moveComponent.ObjectTransform.position).normalized;
-                moveComponent.Direction = Vector3.forward;
-            }
-
-            moveComponent.ObjectTransform.Translate(moveComponent.Direction * moveComponent.Speed * Time.deltaTime, Space.Self);
+            moveComponent.TargetPosition = target.transform.position;
         }
     }
 
@@ -53,5 +43,4 @@ public class MoveSystem
 
         moveComponentList.Remove(moveComponent);
     }
-
 }
